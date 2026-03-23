@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Foundry Intelligence — AI Implementation for Legacy Industries</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -811,18 +811,28 @@
     font-size: 14px;
     color: var(--text-mid);
     line-height: 1.7;
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
   }
 
-  .faq-a.open { display: block; }
+  .faq-a.open {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 10px;
+  }
 
   .faq-arrow {
     font-size: 18px;
     color: var(--amber);
     flex-shrink: 0;
-    transition: transform 0.2s;
+    transition: transform 0.3s ease;
     line-height: 1;
   }
+
+  .faq-arrow.open { transform: rotate(45deg); }
 
   /* CTA BAND */
   .cta-band {
@@ -982,23 +992,137 @@
   }
 
   .footer-links a:hover { color: rgba(255,255,255,0.65); }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 101;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 20px;
+      height: 60px;
+    }
+    .hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: rgba(20,30,45,0.98);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding: 16px 0 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 100;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; text-align: center; }
+    .nav-links a {
+      display: block;
+      padding: 14px 24px;
+      font-size: 15px;
+    }
+    .nav-cta {
+      margin: 8px 24px 0;
+      border-radius: 6px;
+      display: block;
+    }
+    .hero { padding: 120px 24px 72px; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    .logos-bar { padding: 20px 24px; }
+    .logos-inner { flex-direction: column; gap: 12px; }
+    .logos-list { gap: 16px; }
+    section { padding: 72px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .split-section { grid-template-columns: 1fr; gap: 40px; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .faq-item:nth-child(odd) { border-right: none; }
+    .faq-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-inner { flex-direction: column; gap: 16px; align-items: flex-start; }
+    .hero h1 { font-size: 36px; }
+    .section-title { font-size: 28px; }
+    .form-row { grid-template-columns: 1fr; }
+    .industry-tabs { flex-wrap: wrap; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .cta-band { padding: 60px 24px; }
+    .cta-band h2 { font-size: 30px; }
+    #Layer_1 { height: 32px !important; }
+  }
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-
-    <span class="logo-text">Foundry <span>Intelligence</span></span>
+  <a href="#" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;">
+    <div style="height:40px;width:auto;display:flex;align-items:center;">
+      <svg style="height:40px;width:auto;display:block;" id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="1213 1628 1542 742">
+  
+  <path fill="#c8873a" d="M1252.6,1668.13v535.41h227.72v-40h-187.72v-455.41h455.42v258.5h40v-298.5h-535.42Z"/>
+  <g fill="white">
+    <g>
+      <path d="M1566.84,2039.02v40.3h89.15v37.1h-89.15v72.33h-41.11v-186.84h142.27v37.1h-101.16Z"/>
+      <path d="M1856.98,2132.84c-4.98,11.66-11.88,21.89-20.69,30.7-8.81,8.81-19.31,15.75-31.5,20.82-12.19,5.07-25.49,7.61-39.9,7.61s-27.67-2.54-39.77-7.61c-12.1-5.07-22.55-11.92-31.36-20.55-8.81-8.63-15.66-18.77-20.55-30.43-4.9-11.65-7.34-24.16-7.34-37.5v-.53c0-13.35,2.49-25.84,7.47-37.5,4.98-11.65,11.88-21.89,20.69-30.7,8.81-8.81,19.31-15.75,31.5-20.82,12.19-5.07,25.49-7.61,39.9-7.61s27.67,2.54,39.77,7.61c12.1,5.07,22.55,11.92,31.36,20.55,8.81,8.63,15.66,18.78,20.55,30.43,4.89,11.66,7.34,24.16,7.34,37.5v.53c0,13.35-2.49,25.85-7.47,37.5ZM1821.48,2095.34c0-8.01-1.38-15.57-4.14-22.69-2.76-7.12-6.67-13.35-11.74-18.68-5.07-5.34-11.08-9.56-18.02-12.68-6.94-3.11-14.5-4.67-22.69-4.67s-15.97,1.51-22.82,4.54c-6.85,3.03-12.72,7.21-17.62,12.54-4.9,5.34-8.72,11.52-11.48,18.55-2.76,7.03-4.14,14.55-4.14,22.55v.53c0,8.01,1.38,15.57,4.14,22.69,2.76,7.12,6.67,13.35,11.74,18.68,5.07,5.34,11.03,9.57,17.88,12.68,6.85,3.12,14.46,4.67,22.82,4.67s15.75-1.51,22.69-4.54c6.94-3.02,12.85-7.21,17.75-12.55,4.89-5.34,8.72-11.52,11.48-18.55,2.76-7.03,4.14-14.55,4.14-22.55v-.53Z"/>
+      <path d="M2028.47,2144.45c-3.83,10.5-9.3,19.26-16.42,26.29-7.12,7.03-15.75,12.28-25.89,15.75s-21.45,5.21-33.9,5.21c-25.09,0-44.84-6.94-59.26-20.82-14.41-13.88-21.62-34.61-21.62-62.19v-106.77h41.11v105.7c0,15.31,3.56,26.83,10.68,34.57,7.12,7.74,16.99,11.61,29.63,11.61s22.51-3.74,29.63-11.21c7.12-7.47,10.68-18.68,10.68-33.63v-107.03h41.11v105.43c0,14.24-1.91,26.6-5.74,37.1Z"/>
+      <path d="M2180.48,2188.76l-90.49-118.78v118.78h-40.57v-186.84h37.9l87.55,115.04v-115.04h40.57v186.84h-34.97Z"/>
+      <path d="M2398.55,2132.17c-4.8,11.39-11.61,21.27-20.42,29.63-8.81,8.37-19.31,14.95-31.5,19.75-12.19,4.8-25.58,7.21-40.17,7.21h-72.87v-186.84h72.87c14.59,0,27.98,2.36,40.17,7.07,12.19,4.72,22.69,11.26,31.5,19.62,8.81,8.37,15.62,18.2,20.42,29.49,4.8,11.3,7.21,23.53,7.21,36.7v.53c0,13.17-2.4,25.45-7.21,36.83ZM2362.78,2095.34c0-8.18-1.38-15.75-4.14-22.69-2.76-6.94-6.58-12.9-11.48-17.88-4.9-4.98-10.81-8.85-17.75-11.61-6.94-2.76-14.59-4.14-22.96-4.14h-31.76v112.64h31.76c8.36,0,16.02-1.33,22.96-4,6.94-2.67,12.85-6.49,17.75-11.48,4.89-4.98,8.72-10.85,11.48-17.62,2.76-6.76,4.14-14.32,4.14-22.69v-.53Z"/>
+      <path d="M2529.07,2188.76l-40.04-59.79h-32.3v59.79h-41.11v-186.84h85.41c22.24,0,39.54,5.43,51.92,16.28,12.37,10.86,18.55,25.98,18.55,45.38v.53c0,15.13-3.7,27.45-11.08,36.97-7.39,9.52-17.04,16.51-28.96,20.95l45.64,66.73h-48.04ZM2529.87,2065.71c0-8.9-2.85-15.57-8.54-20.02-5.7-4.45-13.61-6.67-23.76-6.67h-40.84v53.65h41.64c10.14,0,17.93-2.4,23.36-7.21,5.43-4.8,8.14-11.21,8.14-19.22v-.53Z"/>
+      <path d="M2675.6,2114.29v74.47h-41.11v-73.67l-71.8-113.17h48.04l44.58,75,45.38-75h46.71l-71.8,112.37Z"/>
+    </g>
+    <g fill="#8fa3bc">
+      <path d="M1538.42,2217.59v112.36h-12.68v-112.36h12.68Z"/>
+      <path d="M1653.99,2217.59h12.36v112.36h-10.11l-72.55-92.14v92.14h-12.36v-112.36h11.88l70.79,90.05v-90.05Z"/>
+      <path d="M1740.5,2329.95h-12.68v-100.64h-37.72v-11.72h88.12v11.72h-37.72v100.64Z"/>
+      <path d="M1883.36,2229.14h-68.54v38.36h61.32v11.56h-61.32v39.33h69.34v11.56h-82.02v-112.36h81.22v11.56Z"/>
+      <path d="M1909.69,2217.59h12.68v100.64h63.24v11.72h-75.92v-112.36Z"/>
+      <path d="M2009.04,2217.59h12.68v100.64h63.24v11.72h-75.92v-112.36Z"/>
+      <path d="M2122.2,2217.59v112.36h-12.68v-112.36h12.68Z"/>
+      <path d="M2233.04,2326.83c-7.65,3.36-16.24,5.04-25.76,5.04-8.88,0-16.83-1.5-23.84-4.49-7.01-2.99-13-7.12-17.98-12.36-4.98-5.24-8.78-11.4-11.4-18.46-2.62-7.06-3.93-14.61-3.93-22.63s1.36-15.09,4.09-22.15c2.73-7.06,6.55-13.27,11.48-18.62,4.92-5.35,10.83-9.6,17.74-12.76,6.9-3.16,14.58-4.74,23.03-4.74,4.71,0,9.01.32,12.92.96,3.9.64,7.54,1.61,10.92,2.89,3.37,1.28,6.53,2.86,9.47,4.73,2.94,1.87,5.8,3.99,8.59,6.34l-8.19,9.63c-2.14-1.93-4.39-3.66-6.74-5.22-2.35-1.55-4.9-2.89-7.62-4.01-2.73-1.12-5.73-2.01-8.99-2.65-3.27-.64-6.88-.96-10.83-.96-6.21,0-11.93,1.23-17.18,3.7-5.24,2.47-9.74,5.79-13.48,9.97-3.75,4.18-6.69,9.08-8.83,14.71-2.14,5.63-3.21,11.6-3.21,17.93,0,6.75,1.04,13,3.13,18.73,2.09,5.74,5.06,10.69,8.91,14.87,3.85,4.18,8.51,7.45,13.96,9.81s11.61,3.54,18.46,3.54c6.42,0,12.46-1.1,18.14-3.3,5.67-2.2,10.43-4.86,14.29-7.98v-28.05h-34.19v-11.24h46.39v44.67c-5.24,4.69-11.69,8.73-19.34,12.09Z"/>
+      <path d="M2362.17,2229.14h-68.54v38.36h61.32v11.56h-61.32v39.33h69.34v11.56h-82.02v-112.36h81.22v11.56Z"/>
+      <path d="M2471.16,2217.59h12.36v112.36h-10.11l-72.55-92.14v92.14h-12.36v-112.36h11.88l70.79,90.05v-90.05Z"/>
+      <path d="M2602.54,2320.23c-3.16,2.41-6.56,4.47-10.19,6.18-3.64,1.71-7.54,3.05-11.72,4.01-4.17.96-8.83,1.44-13.96,1.44-8.13,0-15.62-1.5-22.47-4.49-6.85-2.99-12.79-7.09-17.82-12.28-5.03-5.19-8.96-11.32-11.8-18.38-2.84-7.06-4.25-14.66-4.25-22.79s1.42-15.57,4.25-22.63c2.83-7.06,6.77-13.24,11.8-18.54,5.03-5.3,11.02-9.47,17.98-12.52,6.96-3.05,14.55-4.57,22.79-4.57,5.14,0,9.76.43,13.88,1.28,4.12.86,7.95,2.06,11.48,3.61,3.53,1.55,6.79,3.43,9.79,5.62,3,2.19,5.88,4.63,8.67,7.3l-8.67,9.31c-4.81-4.49-9.98-8.19-15.49-11.08-5.51-2.89-12.12-4.33-19.82-4.33-6.21,0-11.96,1.18-17.26,3.53-5.3,2.35-9.9,5.62-13.8,9.79-3.91,4.17-6.96,9.07-9.15,14.69-2.2,5.62-3.29,11.69-3.29,18.22s1.1,12.63,3.29,18.3c2.19,5.67,5.24,10.59,9.15,14.77,3.9,4.17,8.51,7.46,13.8,9.87s11.05,3.61,17.26,3.61c7.71,0,14.34-1.42,19.9-4.25,5.56-2.83,11.02-6.82,16.37-11.96l8.35,8.19c-2.89,3-5.91,5.7-9.07,8.11Z"/>
+      <path d="M2714.98,2229.14h-68.54v38.36h61.32v11.56h-61.32v39.33h69.34v11.56h-82.02v-112.36h81.22v11.56Z"/>
+    </g>
+  </g>
+</svg>
+    </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#industries">Industries</a></li>
-    <li><a href="#process">How It Works</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact" class="nav-cta">Book a Call</a></li>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#industries" onclick="closeMenu()">Industries</a></li>
+    <li><a href="#process" onclick="closeMenu()">How It Works</a></li>
+    <li><a href="#pricing" onclick="closeMenu()">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Book a Call</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1448,7 +1572,7 @@
         <div class="stars">
           <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
         </div>
-        <p class="testimonial-text">"Running a high volume automotive business, keeping on top of everything is a constant challenge. Foundry built us something that keeps our operation running smoothly — our team saves hours every week and nothing falls through the cracks."</p>
+        <p class="testimonial-text">"Running a prestige automotive business, attention to detail is everything. Foundry delivered exactly that — a solution that fits our workflow perfectly and makes us look even more professional to clients."</p>
         <div class="testimonial-author">
           <div class="author-avatar">BK</div>
           <div>
@@ -1469,27 +1593,27 @@
     <p class="section-sub">We believe in transparency. Here's what most clients ask before they sign on.</p>
 
     <div class="faq-grid">
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item">
         <div class="faq-q">Do I need to understand AI to work with you? <span class="faq-arrow">+</span></div>
         <div class="faq-a">Not at all. Our job is to handle the complexity so you don't have to. We explain everything in plain language and focus on business outcomes, not technology.</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item">
         <div class="faq-q">How long until I see results? <span class="faq-arrow">+</span></div>
         <div class="faq-a">Most clients see measurable time savings within the first 4–8 weeks. Your first AI workflow is typically live within 2–6 weeks of the project starting.</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item">
         <div class="faq-q">Will this integrate with our existing software? <span class="faq-arrow">+</span></div>
         <div class="faq-a">Yes. We design every solution to work with your existing stack — Xero, MYOB, Simpro, Procore, Microsoft 365, and hundreds of other platforms. We don't force you to change what's working.</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item">
         <div class="faq-q">Is there a lock-in contract? <span class="faq-arrow">+</span></div>
         <div class="faq-a">No. Our retainer agreements are month-to-month. We believe we should earn your business every month. Project work is quoted and agreed upfront with clear deliverables.</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item">
         <div class="faq-q">What happens to our data? <span class="faq-arrow">+</span></div>
         <div class="faq-a">Your data stays yours. We follow Australian Privacy Act requirements and only use your data to build and improve your specific solution. We never train AI models on your data without explicit permission.</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item">
         <div class="faq-q">Do you work with businesses outside Brisbane? <span class="faq-arrow">+</span></div>
         <div class="faq-a">Absolutely. We work with clients across Australia. Most of our work is delivered remotely, and we can travel for on-site workshops and implementation when needed.</div>
       </div>
@@ -1584,16 +1708,40 @@
     btn.classList.add('active');
   }
 
-  function toggleFaq(el) {
-    const ans = el.querySelector('.faq-a');
-    const arrow = el.querySelector('.faq-arrow');
-    const isOpen = ans.classList.contains('open');
-    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-    document.querySelectorAll('.faq-arrow').forEach(a => a.textContent = '+');
-    if (!isOpen) {
-      ans.classList.add('open');
-      arrow.textContent = '−';
-    }
-  }
 
-  // Smooth n
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('nav-links').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+  // Close menu on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('nav')) closeMenu();
+  });
+
+  // FAQ accordion with event delegation
+  document.addEventListener('click', function(e) {
+    const item = e.target.closest('.faq-item');
+    if (item) {
+      const ans = item.querySelector('.faq-a');
+      const arrow = item.querySelector('.faq-arrow');
+      const isOpen = ans.classList.contains('open');
+      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-arrow').forEach(a => a.classList.remove('open'));
+      if (!isOpen) { ans.classList.add('open'); arrow.classList.add('open'); }
+    }
+  });
+
+  // Smooth nav background
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 40
+      ? 'rgba(20,30,45,0.98)'
+      : 'rgba(20,30,45,0.96)';
+  });
+</script>
+</body>
+</html>

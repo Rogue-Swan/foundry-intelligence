@@ -1048,10 +1048,61 @@
       display: block;
     }
     .hero { padding: 120px 24px 72px; }
-    .hero-stats { gap: 28px; flex-wrap: wrap; }
+
+    /* 1. Keep hero stats side by side */
+    .hero-stats {
+      gap: 0;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+    .stat-num { font-size: 26px; }
+    .stat-label { font-size: 11px; }
+
+    /* 2. Industries we serve — centred, wrap nicely */
     .logos-bar { padding: 20px 24px; }
-    .logos-inner { flex-direction: column; gap: 12px; }
-    .logos-list { gap: 16px; }
+    .logos-inner {
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      text-align: center;
+    }
+    .logos-label { text-align: center; }
+    .logos-list {
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .logo-item {
+      font-size: 13px;
+      padding: 5px 12px;
+      background: var(--cream);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+
+    /* 3. Industry focus — stack vertically, tabs become pills */
+    .industry-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 6px;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .industry-tabs::-webkit-scrollbar { display: none; }
+    .ind-tab {
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-size: 13px;
+      padding: 8px 16px;
+    }
+    .industry-panel.active {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .solution-box { padding: 24px 20px; }
+    .ind-problems { margin-bottom: 0; }
+
     section { padding: 72px 24px; }
     .services-grid { grid-template-columns: 1fr; }
     .split-section { grid-template-columns: 1fr; gap: 40px; }
@@ -1067,7 +1118,6 @@
     .hero h1 { font-size: 36px; }
     .section-title { font-size: 28px; }
     .form-row { grid-template-columns: 1fr; }
-    .industry-tabs { flex-wrap: wrap; }
     .hero-actions { flex-direction: column; align-items: flex-start; }
     .cta-band { padding: 60px 24px; }
     .cta-band h2 { font-size: 30px; }
